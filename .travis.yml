@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t kervin102/react-test -f ./client/Dockerfile.dev   
+  - docker build -t kervin102/react-test -f ./client/Dockerfile.dev .
   #this is to build the image to run test for our client app. We are using Dockerfile.dev because we do not do test with Production Docker
   # we are tagging the image with the name 'react-test'
 
@@ -12,10 +12,10 @@ script:
   - docker run kervin102/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t kervin102/multi-client ./client
-  - docker build -t kervin102/multi-nginx ./nginx
-  - docker build -t kervin102/multi-server ./server
-  - docker build -t kervin102/multi-worker ./worker
+  - docker build -t kervin102/multi-client ./client .
+  - docker build -t kervin102/multi-nginx ./nginx .
+  - docker build -t kervin102/multi-server ./server .
+  - docker build -t kervin102/multi-worker ./worker .
   #take the images and take them to docker hub but we have to login to our docker CLI first
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # echo "$DOCKER_PASSWORD - grabs the password and adds it to stdin for  --password-stdin command
