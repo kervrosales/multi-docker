@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t kervin102/react-test -f ./client/ ./client
+  - docker build -t kervin102/react-test -f ./client/Dockerfile.dev ./client
   #this is to build the image to run test for our client app. We are using Dockerfile.dev because we do not do test with Production Docker
   # we are tagging the image with the name 'react-test'
 
