@@ -1,0 +1,35 @@
+{
+    "AWSEBDockerrunVersion": "2",
+    "containderDefinitions": [
+        {
+            "name": "client",
+            "image": "kerv102/multi-client",
+            "hostname": "client",
+            "essential": false 
+        },
+        {
+            "name": "server",
+            "image": "kerv102/multi-server",
+            "hostname": "api",
+            "essential": false 
+        },
+        {
+            "name": "worker",
+            "image": "kerv102/multi-worker",
+            "hostname": "api",
+            "essential": false 
+        },
+        {
+            "name": "nginx", 
+            "image": "kerv102/multi-nginx",
+            "hostname": "nginx", 
+            "portMappings":[
+                {
+                    "hostPort": 80,
+                    "containerPort":80
+                }
+            ],
+            "links":["client", "server"]
+        }
+    ]
+}
